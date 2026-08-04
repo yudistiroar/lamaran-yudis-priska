@@ -1,36 +1,41 @@
 /**
  * Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR
- * Modular Vanilla JavaScript for scroll animations, guest personalization,
- * lightbox gallery, and copy link functionality.
+ * Production JavaScript: Scroll animations, accessible lightbox gallery with 
+ * touch/keyboard navigation, clipboard link copying, and image fallbacks.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    initGuestPersonalization();
+    initImageFallbacks();
     initScrollAnimations();
     initLightbox();
     initCopyLink();
   });
   
   /**
-   * 1. Personalized Invitation Support (URL Parameter ?to=)
+   * 1. Graceful Image Load Fallback
    */
-  function initGuestPersonalization() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestParam = urlParams.get('to');
+  function initImageFallbacks() {
+    const images = document.querySelectorAll('img');
   
-    if (guestParam && guestParam.trim() !== '') {
-      const guestGreeting = document.getElementById('guest-greeting');
-      const guestNameEl = document.getElementById('guest-name');
+    images.forEach((img) => {
+      if (img.complete && img.naturalHeight === 0) {
+        handleImageError(img);
+      } else {
+        img.addEventListener('error', () => handleImageError(img));
+      }
+    });
   
-      if (guestGreeting && guestNameEl) {
-        guestNameEl.textContent = decodeURIComponent(guestParam.trim());
-        guestGreeting.classList.remove('hidden');
+    function handleImageError(img) {
+      const parent = img.parentElement;
+      img.style.display = 'none';
+      if (parent) {
+        parent.classList.add('image-fallback');
       }
     }
   }
   
   /**
-   * 2. IntersectionObserver Fade-in Scroll Animations
+   * 2. IntersectionObserver Fade-In Animations
    */
   function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('.fade-in');
@@ -63,63 +68,135 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   /**
-   * 3. Vanilla JavaScript Lightbox Gallery
+   * 3. Accessible Gallery Lightbox with Navigation & Swipe Support
    */
   function initLightbox() {
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const lightbox = document.getElementById('lightbox');
+    const galleryButtons = Array.from(document.querySelectorAll('.gallery-item'));
+    const dialog = document.getElementById('lightbox');
+    const backdrop = document.getElementById('lightbox-backdrop');
     const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxClose = document.getElementById('lightbox-close');
+    const closeBtn = document.getElementById('lightbox-close');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
   
-    if (!lightbox || !lightboxImg || !galleryItems.length) return;
+    if (!dialog || !lightboxImg || !galleryButtons.length) return;
   
-    const openLightbox = (imgSrc, altText) => {
-      lightboxImg.src = imgSrc;
-      lightboxImg.alt = altText;
-      lightbox.classList.add('active');
-      lightbox.setAttribute('aria-hidden', 'false');
+    let currentIndex = 0;
+    let lastActiveElement = null;
+  
+    // Extract gallery images data
+    const galleryData = galleryButtons.map((btn) => {
+      const img = btn.querySelector('img');
+      return {
+        src: img ? img.getAttribute('src') : '',
+        alt: img ? img.getAttribute('alt') : ''
+      };
+    });
+  
+    const updateLightboxContent = (index) => {
+      currentIndex = index;
+      const data = galleryData[currentIndex];
+      lightboxImg.src = data.src;
+      lightboxImg.alt = data.alt;
+    };
+  
+    const openLightbox = (index) => {
+      lastActiveElement = document.activeElement;
+      updateLightboxContent(index);
+  
+      if (typeof dialog.showModal === 'function') {
+        dialog.showModal();
+      } else {
+        dialog.setAttribute('open', '');
+      }
+  
       document.body.style.overflow = 'hidden';
+      closeBtn.focus();
     };
   
     const closeLightbox = () => {
-      lightbox.classList.remove('active');
-      lightbox.setAttribute('aria-hidden', 'true');
+      if (typeof dialog.close === 'function') {
+        dialog.close();
+      } else {
+        dialog.removeAttribute('open');
+      }
+  
       document.body.style.overflow = '';
+      if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+        lastActiveElement.focus();
+      }
     };
   
-    galleryItems.forEach((item) => {
-      const img = item.querySelector('img');
-      if (!img) return;
+    const showPrev = () => {
+      const newIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+      updateLightboxContent(newIndex);
+    };
   
-      item.addEventListener('click', () => {
-        openLightbox(img.src, img.alt);
-      });
+    const showNext = () => {
+      const newIndex = (currentIndex + 1) % galleryData.length;
+      updateLightboxContent(newIndex);
+    };
   
-      item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+    // Event Listeners for Gallery Items
+    galleryButtons.forEach((btn, index) => {
+      btn.addEventListener('click', () => openLightbox(index));
+    });
+  
+    // Control Listeners
+    closeBtn.addEventListener('click', closeLightbox);
+    backdrop.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+  
+    // Keyboard Navigation
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowLeft') {
+        showPrev();
+      } else if (e.key === 'ArrowRight') {
+        showNext();
+      } else if (e.key === 'Tab') {
+        // Focus Trap inside Lightbox
+        const focusables = [closeBtn, prevBtn, nextBtn].filter((el) => el && el.offsetParent !== null);
+        const firstFocusable = focusables[0];
+        const lastFocusable = focusables[focusables.length - 1];
+  
+        if (e.shiftKey && document.activeElement === firstFocusable) {
           e.preventDefault();
-          openLightbox(img.src, img.alt);
+          lastFocusable.focus();
+        } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable.focus();
         }
-      });
-    });
-  
-    lightboxClose.addEventListener('click', closeLightbox);
-  
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
       }
     });
   
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
+    // Touch Swipe Navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+  
+    dialog.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+  
+    dialog.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+  
+    function handleSwipe() {
+      const swipeThreshold = 40;
+      if (touchEndX < touchStartX - swipeThreshold) {
+        showNext();
+      } else if (touchEndX > touchStartX + swipeThreshold) {
+        showPrev();
       }
-    });
+    }
   }
   
   /**
-   * 4. Clipboard API Copy Link with Toast Feedback
+   * 4. Clipboard API Link Copying with Toast Notification
    */
   function initCopyLink() {
     const copyBtn = document.getElementById('copy-link-btn');
@@ -130,24 +207,38 @@ document.addEventListener('DOMContentLoaded', () => {
     let toastTimer;
   
     copyBtn.addEventListener('click', async () => {
+      const shareUrl = window.location.href;
+  
       try {
-        await navigator.clipboard.writeText(window.location.href);
-        showToast('Link berhasil disalin.');
-      } catch (err) {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = window.location.href;
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
-          document.execCommand('copy');
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(shareUrl);
           showToast('Link berhasil disalin.');
-        } catch (fallbackErr) {
-          showToast('Gagal menyalin link.');
+        } else {
+          fallbackCopyText(shareUrl);
         }
-        document.body.removeChild(textArea);
+      } catch (err) {
+        fallbackCopyText(shareUrl);
       }
     });
+  
+    function fallbackCopyText(text) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+  
+      try {
+        document.execCommand('copy');
+        showToast('Link berhasil disalin.');
+      } catch (err) {
+        showToast('Gagal menyalin link.');
+      }
+  
+      document.body.removeChild(textArea);
+    }
   
     function showToast(message) {
       toast.textContent = message;
