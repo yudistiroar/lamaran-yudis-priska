@@ -17,7 +17,7 @@
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
-    /* Kinetic Timing tuned for Apple/Linear-grade micro-interactions */
+    /* Kinetic Timing */
     --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-smooth: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-bounce: transform 0.45s cubic-bezier(0.22, 1.2, 0.36, 1), box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1);
@@ -39,7 +39,6 @@
   
   body {
     background-color: var(--bg-color);
-    /* Luminous center lighting softly rolling into a warm paper tone */
     background-image: 
       radial-gradient(ellipse 75% 55% at 50% 25%, #FAF7F0 0%, #F8F4EC 65%, #F1EAE0 100%);
     background-attachment: fixed;
@@ -53,7 +52,6 @@
     position: relative;
   }
   
-  /* Layer 1: Ambient Editorial Lighting & Warm Edge Vignette */
   body::before {
     content: "";
     position: fixed;
@@ -61,17 +59,13 @@
     width: 100vw;
     height: 100vh;
     background: 
-      /* Soft white top glow for paper luminosity */
       radial-gradient(ellipse 85% 40% at 50% 0%, rgba(255, 255, 255, 0.7) 0%, transparent 80%),
-      /* Organic warm corner vignette */
       radial-gradient(ellipse 110% 110% at 50% 50%, transparent 55%, rgba(34, 48, 74, 0.035) 100%),
-      /* Extremely soft warm accent wash at base */
       radial-gradient(circle at 50% 100%, rgba(200, 107, 90, 0.02) 0%, transparent 60%);
     pointer-events: none;
     z-index: 0;
   }
   
-  /* Layer 2: Tactile Hot-Pressed Cotton Stationery Texture Overlay */
   body::after {
     content: "";
     position: fixed;
@@ -99,7 +93,6 @@
     border: 0;
   }
   
-  /* Max Container Desktop Constraint */
   .app-container {
     width: 100%;
     max-width: 920px;
@@ -134,7 +127,66 @@
   }
   
   /* ==========================================================================
-     3. Micro Motion & Reduced Motion
+     3. Subtle Edge Editorial Decorations (Max 5, Opacity 0.12 - 0.22)
+     ========================================================================== */
+  .editorial-dec {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+  }
+  
+  /* 1. Top Left Botanical Stem */
+  .dec-botanical-top {
+    top: 1.5rem;
+    left: -0.5rem;
+    opacity: 0.18;
+  }
+  
+  /* 2. Top Right Vintage Postage Stamp Frame */
+  .dec-stamp-top {
+    top: 3.5rem;
+    right: 0rem;
+    opacity: 0.20;
+    transform: rotate(6deg);
+  }
+  
+  /* 3. Mid-Left Notebook Margin Ruler Line */
+  .dec-margin-line {
+    top: 28rem;
+    left: 0.25rem;
+    width: 1px;
+    height: 220px;
+    background: linear-gradient(180deg, transparent, rgba(200, 107, 90, 0.22), transparent);
+    opacity: 0.16;
+  }
+  
+  /* 4. Mid-Right Monogram Seal Outline */
+  .dec-wax-seal {
+    top: 48rem;
+    right: -0.25rem;
+    opacity: 0.18;
+    transform: rotate(-10deg);
+  }
+  
+  /* 5. Bottom Right Pressed Flower Branch */
+  .dec-botanical-bottom {
+    bottom: 6rem;
+    right: 0rem;
+    opacity: 0.18;
+  }
+  
+  /* Mobile Edge Safe Positioning */
+  @media (max-width: 640px) {
+    .dec-botanical-top { left: -1.5rem; opacity: 0.14; }
+    .dec-stamp-top { right: -0.5rem; opacity: 0.15; }
+    .dec-margin-line { display: none; }
+    .dec-wax-seal { right: -1rem; opacity: 0.14; }
+    .dec-botanical-bottom { right: -1rem; opacity: 0.14; }
+  }
+  
+  /* ==========================================================================
+     4. Micro Motion & Reduced Motion
      ========================================================================== */
   .fade-in {
     opacity: 0;
@@ -161,7 +213,7 @@
   }
   
   /* ==========================================================================
-     4. Hero Section & Optical Reading Hierarchy
+     5. Hero Section & Optical Reading Hierarchy
      ========================================================================== */
   .hero {
     min-height: auto;
@@ -272,7 +324,7 @@
     line-height: 1.15;
   }
   
-  /* 3. COUPLE NAMES (80-85% size, lighter weight) */
+  /* 3. COUPLE NAMES */
   .couple-names {
     display: flex;
     flex-direction: column;
@@ -302,7 +354,7 @@
     margin: 0.05rem 0;
   }
   
-  /* 4. HEART ICON (~30% smaller) */
+  /* 4. HEART ICON */
   .heart-icon {
     position: relative;
     display: inline-block;
@@ -315,7 +367,7 @@
     display: block;
   }
   
-  /* 5. TANGGAL (Tertiary soft info) */
+  /* 5. TANGGAL */
   .hero-date {
     border-top: 1px solid rgba(34, 48, 74, 0.08);
     border-bottom: 1px solid rgba(34, 48, 74, 0.08);
@@ -369,7 +421,7 @@
   }
   
   /* ==========================================================================
-     5. Tactile Scrapbook Doodles
+     6. Tactile Scrapbook Doodles
      ========================================================================== */
   .doodle {
     position: absolute;
@@ -423,7 +475,7 @@
   }
   
   /* ==========================================================================
-     6. Event Detail Card & Editorial Dividers
+     7. Event Detail Card & Editorial Dividers
      ========================================================================== */
   .detail-section {
     display: flex;
@@ -495,7 +547,6 @@
     font-weight: 600;
   }
   
-  /* Refined Subtle Gradient Separator */
   .detail-divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(34, 48, 74, 0.08), transparent);
@@ -517,7 +568,6 @@
     gap: 0.65rem;
   }
   
-  /* Functional Micro Buttons */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -576,7 +626,7 @@
   }
   
   /* ==========================================================================
-     7. Featured Photograph Section
+     8. Featured Photograph Section
      ========================================================================== */
   .featured-photo-section {
     display: flex;
@@ -611,7 +661,7 @@
   }
   
   /* ==========================================================================
-     8. Closing Section
+     9. Closing Section
      ========================================================================== */
   .closing-section {
     text-align: center;
@@ -661,7 +711,7 @@
   }
   
   /* ==========================================================================
-     9. Toast Notification
+     10. Toast Notification
      ========================================================================== */
   .toast {
     position: fixed;
@@ -687,7 +737,7 @@
   }
   
   /* ==========================================================================
-     10. Fluid Viewport Responsive Scaling (320px – 920px)
+     11. Fluid Viewport Responsive Scaling
      ========================================================================== */
   @media (min-width: 320px) and (max-width: 359px) {
     .hero-photo {
