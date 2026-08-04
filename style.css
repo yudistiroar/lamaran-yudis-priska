@@ -142,7 +142,7 @@
   }
   
   /* ==========================================================================
-     4. Hero Section (Refined Optical Hierarchy)
+     4. Hero Section & Typography Hierarchy Fixes
      ========================================================================== */
   .hero {
     min-height: auto;
@@ -156,7 +156,7 @@
   }
   
   .hero-header {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
   
   .bismillah {
@@ -179,7 +179,7 @@
     text-transform: uppercase;
   }
   
-  /* Hero Editorial Frame */
+  /* Hero Editorial Frame & Fixed Image Visibility */
   .hero-photo-wrapper {
     position: relative;
     margin: 1.5rem 0 2.25rem;
@@ -196,6 +196,7 @@
   .hero-photo {
     width: 300px;
     height: 390px;
+    max-width: 100%;
     object-fit: cover;
     background-color: var(--white);
     padding: 12px 12px 52px 12px;
@@ -222,7 +223,14 @@
     z-index: 2;
   }
   
-  /* Hero Typography Hierarchy Adjustments */
+  .hero-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Sub Heading */
   .sub-heading {
     display: block;
     font-size: 0.75rem;
@@ -234,7 +242,7 @@
     opacity: 0.9;
   }
   
-  /* Primary Headline Accent: Strongest Visual Focus */
+  /* Requirement 1: Dominant Main Headline */
   .main-heading {
     font-family: var(--font-serif);
     font-size: 2.5rem;
@@ -245,7 +253,7 @@
     line-height: 1.15;
   }
   
-  /* Secondary Level: Couple Names (80–85% of Title Size, Lighter Weight) */
+  /* Requirement 2 & 3: Couple Names ~80–85% of Title, Lighter Weight */
   .couple-names {
     display: flex;
     flex-direction: column;
@@ -258,7 +266,7 @@
   
   .couple-names .name {
     font-family: var(--font-serif);
-    font-size: 2.05rem;
+    font-size: 2.05rem; /* ~82% of 2.5rem */
     color: var(--primary-color);
     font-weight: 500;
     letter-spacing: -0.01em;
@@ -275,7 +283,7 @@
     margin: 0.1rem 0;
   }
   
-  /* Heart Icon Scaled Down (~30% Smaller) */
+  /* Requirement 5: Heart Icon ~30% Smaller */
   .heart-icon {
     position: relative;
     display: inline-block;
@@ -284,7 +292,13 @@
     opacity: 0.8;
   }
   
-  /* Tertiary Level: Date (Smaller, Lighter Weight, Softened Color) */
+  .heart-icon svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Requirement 4: Date Secondary Information (Smaller, Lighter, Softer Color) */
   .hero-date {
     border-top: 1px solid rgba(34, 48, 74, 0.08);
     border-bottom: 1px solid rgba(34, 48, 74, 0.08);
@@ -622,6 +636,12 @@
     opacity: 0.85;
   }
   
+  .closing-heart svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+  }
+  
   /* ==========================================================================
      9. Toast Notification
      ========================================================================== */
@@ -649,7 +669,7 @@
   }
   
   /* ==========================================================================
-     10. Viewport Specific Layout Refinements
+     10. Viewport Specific Responsive Typography & Layouts
      ========================================================================== */
   @media (min-width: 375px) {
     .hero-photo {
@@ -662,7 +682,7 @@
     }
   
     .couple-names .name {
-      font-size: 2.2rem;
+      font-size: 2.25rem; /* ~82% of 2.75rem */
     }
   }
   
@@ -689,7 +709,7 @@
     }
   
     .couple-names .name {
-      font-size: 2.4rem;
+      font-size: 2.45rem; /* ~82% of 3rem */
     }
   
     .closing-names .name {
@@ -712,6 +732,6 @@
     }
   
     .couple-names .name {
-      font-size: 2.6rem;
+      font-size: 2.65rem; /* ~82% of 3.25rem */
     }
   }
