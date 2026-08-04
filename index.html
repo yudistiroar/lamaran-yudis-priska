@@ -139,28 +139,11 @@
         </div>
       </section>
 
-      <!-- GALLERY SECTION -->
-      <section class="gallery-section section fade-in" aria-labelledby="gallery-title">
-        <h2 id="gallery-title" class="section-title">
-          Galeri
-          <span class="doodle flower-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C86B5A" stroke-width="1.6" stroke-linecap="round"><path d="M12 2a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z"/><path d="M12 10a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z"/><path d="M4 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z"/><path d="M12 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z"/><circle cx="12" cy="12" r="2" fill="#C86B5A"/></svg>
-          </span>
-        </h2>
-
-        <div class="gallery-grid">
-          <button type="button" class="gallery-item rotate-left" aria-label="Buka foto galeri 1 dalam layar penuh">
-            <img src="assets/images/gallery-1.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 1" loading="lazy" decoding="async" width="280" height="280">
-          </button>
-          <button type="button" class="gallery-item rotate-right" aria-label="Buka foto galeri 2 dalam layar penuh">
-            <img src="assets/images/gallery-2.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 2" loading="lazy" decoding="async" width="280" height="280">
-          </button>
-          <button type="button" class="gallery-item rotate-alt-left" aria-label="Buka foto galeri 3 dalam layar penuh">
-            <img src="assets/images/gallery-3.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 3" loading="lazy" decoding="async" width="280" height="280">
-          </button>
-          <button type="button" class="gallery-item rotate-alt-right" aria-label="Buka foto galeri 4 dalam layar penuh">
-            <img src="assets/images/gallery-4.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 4" loading="lazy" decoding="async" width="280" height="280">
-          </button>
+      <!-- FEATURED PHOTOGRAPH SECTION -->
+      <section class="featured-photo-section section fade-in" aria-label="Foto Spesial Momen Lamaran">
+        <div class="featured-photo-wrapper">
+          <div class="doodle tape-tape top-center" aria-hidden="true"></div>
+          <img src="assets/images/gallery-1.jpeg" alt="Momen Priska Yovita dan Yudistiro AR" class="featured-photo" loading="lazy" decoding="async" width="480" height="480">
         </div>
       </section>
     </main>
@@ -172,33 +155,21 @@
           Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara berkenan hadir serta memberikan doa dan restu pada prosesi lamaran kami.
         </p>
 
-        <p class="thank-you-text">Terima kasih atas doa dan kehadirannya.</p>
-
         <div class="closing-names">
           <p class="name">Priska Yovita</p>
           <p class="ampersand" aria-hidden="true">&amp;</p>
           <p class="name">Yudistiro AR</p>
         </div>
+
+        <div class="closing-heart" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#C86B5A">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
       </div>
     </footer>
 
   </div>
-
-  <!-- LIGHTBOX DIALOG -->
-  <dialog id="lightbox" class="lightbox-dialog" aria-label="Pratinjau Foto Galeri">
-    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
-    <div class="lightbox-container">
-      <button type="button" id="lightbox-close" class="lightbox-control lightbox-close" aria-label="Tutup pratinjau">&times;</button>
-      
-      <button type="button" id="lightbox-prev" class="lightbox-control lightbox-nav prev" aria-label="Foto sebelumnya">&#10094;</button>
-      
-      <div class="lightbox-media-wrapper">
-        <img id="lightbox-img" src="" alt="" class="lightbox-img">
-      </div>
-
-      <button type="button" id="lightbox-next" class="lightbox-control lightbox-nav next" aria-label="Foto selanjutnya">&#10095;</button>
-    </div>
-  </dialog>
 
   <!-- TOAST NOTIFICATION -->
   <div id="toast" class="toast" role="status" aria-live="polite">Link berhasil disalin.</div>

@@ -1,13 +1,12 @@
 /**
  * Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR
- * High-performance Vanilla JavaScript: Micro-interactions, accessible lightbox 
- * navigation, smooth observers, and clipboard API.
+ * High-performance Vanilla JavaScript: Micro-interactions, scroll animations,
+ * image fallbacks, and clipboard link copying.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     initImageFallbacks();
     initScrollAnimations();
-    initLightbox();
     initCopyLink();
   });
   
@@ -65,128 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
     animatedElements.forEach((element) => {
       observer.observe(element);
     });
-  }
-  
-  /**
-   * Accessible Gallery Lightbox with Navigation & Swipe Support
-   */
-  function initLightbox() {
-    const galleryButtons = Array.from(document.querySelectorAll('.gallery-item'));
-    const dialog = document.getElementById('lightbox');
-    const backdrop = document.getElementById('lightbox-backdrop');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeBtn = document.getElementById('lightbox-close');
-    const prevBtn = document.getElementById('lightbox-prev');
-    const nextBtn = document.getElementById('lightbox-next');
-  
-    if (!dialog || !lightboxImg || !galleryButtons.length) return;
-  
-    let currentIndex = 0;
-    let lastActiveElement = null;
-  
-    const galleryData = galleryButtons.map((btn) => {
-      const img = btn.querySelector('img');
-      return {
-        src: img ? img.getAttribute('src') : '',
-        alt: img ? img.getAttribute('alt') : ''
-      };
-    });
-  
-    const updateLightboxContent = (index) => {
-      currentIndex = index;
-      const data = galleryData[currentIndex];
-      lightboxImg.src = data.src;
-      lightboxImg.alt = data.alt;
-    };
-  
-    const openLightbox = (index) => {
-      lastActiveElement = document.activeElement;
-      updateLightboxContent(index);
-  
-      if (typeof dialog.showModal === 'function') {
-        dialog.showModal();
-      } else {
-        dialog.setAttribute('open', '');
-      }
-  
-      document.body.style.overflow = 'hidden';
-      closeBtn.focus();
-    };
-  
-    const closeLightbox = () => {
-      if (typeof dialog.close === 'function') {
-        dialog.close();
-      } else {
-        dialog.removeAttribute('open');
-      }
-  
-      document.body.style.overflow = '';
-      if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
-        lastActiveElement.focus();
-      }
-    };
-  
-    const showPrev = () => {
-      const newIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
-      updateLightboxContent(newIndex);
-    };
-  
-    const showNext = () => {
-      const newIndex = (currentIndex + 1) % galleryData.length;
-      updateLightboxContent(newIndex);
-    };
-  
-    galleryButtons.forEach((btn, index) => {
-      btn.addEventListener('click', () => openLightbox(index));
-    });
-  
-    closeBtn.addEventListener('click', closeLightbox);
-    backdrop.addEventListener('click', closeLightbox);
-    prevBtn.addEventListener('click', showPrev);
-    nextBtn.addEventListener('click', showNext);
-  
-    dialog.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeLightbox();
-      } else if (e.key === 'ArrowLeft') {
-        showPrev();
-      } else if (e.key === 'ArrowRight') {
-        showNext();
-      } else if (e.key === 'Tab') {
-        const focusables = [closeBtn, prevBtn, nextBtn].filter((el) => el && el.offsetParent !== null);
-        const firstFocusable = focusables[0];
-        const lastFocusable = focusables[focusables.length - 1];
-  
-        if (e.shiftKey && document.activeElement === firstFocusable) {
-          e.preventDefault();
-          lastFocusable.focus();
-        } else if (!e.shiftKey && document.activeElement === lastFocusable) {
-          e.preventDefault();
-          firstFocusable.focus();
-        }
-      }
-    });
-  
-    let touchStartX = 0;
-    let touchEndX = 0;
-  
-    dialog.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-  
-    dialog.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-  
-    function handleSwipe() {
-      const swipeThreshold = 40;
-      if (touchEndX < touchStartX - swipeThreshold) {
-        showNext();
-      } else if (touchEndX > touchStartX + swipeThreshold) {
-        showPrev();
-      }
-    }
   }
   
   /**
