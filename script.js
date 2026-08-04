@@ -1,13 +1,14 @@
 /**
  * Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR
  * High-performance Vanilla JavaScript: Micro-interactions, scroll animations,
- * image fallbacks, and clipboard link copying.
+ * floating WhatsApp trigger, image fallbacks, and clipboard link copying.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     initImageFallbacks();
     initScrollAnimations();
     initCopyLink();
+    initFloatingWhatsApp();
   });
   
   /**
@@ -120,4 +121,33 @@ document.addEventListener('DOMContentLoaded', () => {
         toast.classList.remove('show');
       }, 2500);
     }
+  }
+  
+  /**
+   * Floating WhatsApp Button Visibility Trigger on Scroll (> 200px)
+   */
+  function initFloatingWhatsApp() {
+    const waBtn = document.getElementById('whatsapp-btn');
+    if (!waBtn) return;
+  
+    let ticking = false;
+  
+    const toggleWaButton = () => {
+      if (window.scrollY > 200) {
+        waBtn.classList.add('visible');
+      } else {
+        waBtn.classList.remove('visible');
+      }
+      ticking = false;
+    };
+  
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(toggleWaButton);
+        ticking = true;
+      }
+    }, { passive: true });
+  
+    // Initial check
+    toggleWaButton();
   }
