@@ -1,7 +1,7 @@
 /**
  * Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR
- * Production JavaScript: Scroll animations, accessible lightbox gallery with 
- * touch/keyboard navigation, clipboard link copying, and image fallbacks.
+ * High-performance Vanilla JavaScript: Micro-interactions, accessible lightbox 
+ * navigation, smooth observers, and clipboard API.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   /**
-   * 1. Graceful Image Load Fallback
+   * Graceful Image Fallback
    */
   function initImageFallbacks() {
     const images = document.querySelectorAll('img');
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   /**
-   * 2. IntersectionObserver Fade-In Animations
+   * IntersectionObserver Fade-In Animations
    */
   function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('.fade-in');
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   /**
-   * 3. Accessible Gallery Lightbox with Navigation & Swipe Support
+   * Accessible Gallery Lightbox with Navigation & Swipe Support
    */
   function initLightbox() {
     const galleryButtons = Array.from(document.querySelectorAll('.gallery-item'));
@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
     let lastActiveElement = null;
   
-    // Extract gallery images data
     const galleryData = galleryButtons.map((btn) => {
       const img = btn.querySelector('img');
       return {
@@ -137,18 +136,15 @@ document.addEventListener('DOMContentLoaded', () => {
       updateLightboxContent(newIndex);
     };
   
-    // Event Listeners for Gallery Items
     galleryButtons.forEach((btn, index) => {
       btn.addEventListener('click', () => openLightbox(index));
     });
   
-    // Control Listeners
     closeBtn.addEventListener('click', closeLightbox);
     backdrop.addEventListener('click', closeLightbox);
     prevBtn.addEventListener('click', showPrev);
     nextBtn.addEventListener('click', showNext);
   
-    // Keyboard Navigation
     dialog.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeLightbox();
@@ -157,7 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (e.key === 'ArrowRight') {
         showNext();
       } else if (e.key === 'Tab') {
-        // Focus Trap inside Lightbox
         const focusables = [closeBtn, prevBtn, nextBtn].filter((el) => el && el.offsetParent !== null);
         const firstFocusable = focusables[0];
         const lastFocusable = focusables[focusables.length - 1];
@@ -172,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   
-    // Touch Swipe Navigation
     let touchStartX = 0;
     let touchEndX = 0;
   
@@ -196,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   /**
-   * 4. Clipboard API Link Copying with Toast Notification
+   * Clipboard Link Copying with Toast Notification
    */
   function initCopyLink() {
     const copyBtn = document.getElementById('copy-link-btn');
