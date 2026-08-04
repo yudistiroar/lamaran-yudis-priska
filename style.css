@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSS Variables & System Configuration
+   1. CSS Variables & System Configuration
    ========================================================================== */
    :root {
     --bg-color: #F8F4EC;
@@ -8,21 +8,21 @@
     --text-color: #2E2E2E;
     --white: #FFFFFF;
     
-    /* Refined Shadow Hierarchy */
+    /* Refined Premium Shadows */
     --shadow-subtle: 0 4px 12px rgba(34, 48, 74, 0.04);
-    --shadow-soft: 0 12px 32px rgba(34, 48, 74, 0.08);
-    --shadow-sticker: 0 16px 36px rgba(34, 48, 74, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
-    --shadow-hover: 0 20px 40px rgba(34, 48, 74, 0.16);
+    --shadow-soft: 0 14px 36px rgba(34, 48, 74, 0.07);
+    --shadow-sticker: 0 18px 40px rgba(34, 48, 74, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 22px 48px rgba(34, 48, 74, 0.16);
   
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
-    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-bounce: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-bounce: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   
   /* ==========================================================================
-     Base & Reset Settings
+     2. Base & Reset Settings
      ========================================================================== */
   *, *::before, *::after {
     box-sizing: border-box;
@@ -46,7 +46,6 @@
     text-rendering: optimizeLegibility;
   }
   
-  /* Screen Reader Only Utility */
   .sr-only {
     position: absolute;
     width: 1px;
@@ -59,27 +58,27 @@
     border: 0;
   }
   
-  /* Container desktop constraint */
+  /* Desktop Max Width Constraint (Feature #9) */
   .app-container {
     width: 100%;
-    max-width: 1100px;
+    max-width: 960px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
   }
   
   .section {
-    padding: 4rem 0;
+    padding: 3rem 0;
   }
   
   /* ==========================================================================
-     Animations & Transitions
+     3. Animations & Motion Control (Feature #10)
      ========================================================================== */
   .fade-in {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
     will-change: opacity, transform;
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .fade-in.visible {
@@ -87,47 +86,97 @@
     transform: translateY(0);
   }
   
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in {
+      transition: opacity 0.3s ease-in-out;
+      transform: none !important;
+    }
+    .arrow-down, .hero-photo-wrapper, .gallery-item {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+  
   /* ==========================================================================
-     Hero Section
+     4. Personalized Guest Badge (Feature #13)
+     ========================================================================== */
+  .guest-greeting {
+    background: var(--white);
+    border: 1px dashed rgba(200, 107, 90, 0.4);
+    padding: 0.6rem 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-subtle);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+  }
+  
+  .guest-greeting.hidden {
+    display: none;
+  }
+  
+  .guest-label {
+    font-size: 0.725rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+  
+  .guest-title {
+    font-size: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.85;
+  }
+  
+  .guest-name {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+  
+  /* ==========================================================================
+     5. Hero Section (Feature #1 & #2)
      ========================================================================== */
   .hero {
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 3.5rem;
-    padding-bottom: 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
   }
   
   .hero-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
   
   .bismillah {
     font-family: var(--font-serif);
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     direction: rtl;
-    line-height: 1.4;
+    line-height: 1.35;
   }
   
   .blessing-text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-color);
     opacity: 0.85;
-    letter-spacing: 0.03em;
-    font-weight: 400;
+    letter-spacing: 0.02em;
   }
   
-  /* Scrapbook Hero Photo with Washi Tape Effect */
+  /* Hero Photo (20–30% larger, prominent focal point) */
   .hero-photo-wrapper {
     position: relative;
-    margin: 1.75rem 0 2.75rem;
-    transform: rotate(-2.5deg);
+    margin: 1.25rem 0 1.75rem;
+    transform: rotate(-2deg);
     transition: var(--transition-bounce);
     display: inline-block;
   }
@@ -137,8 +186,8 @@
   }
   
   .hero-photo {
-    width: 270px;
-    height: 350px;
+    width: 290px;
+    height: 380px;
     object-fit: cover;
     background-color: var(--white);
     padding: 12px 12px 48px 12px;
@@ -147,60 +196,42 @@
     display: block;
   }
   
-  /* Tape Accent */
-  .tape-tape {
-    position: absolute;
-    width: 90px;
-    height: 26px;
-    background-color: rgba(248, 244, 236, 0.7);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    backdrop-filter: blur(2px);
-    z-index: 3;
-  }
-  
-  .tape-tape.top-left {
-    top: -10px;
-    left: -20px;
-    transform: rotate(-15deg);
-    border-left: 2px dashed rgba(0, 0, 0, 0.1);
-    border-right: 2px dashed rgba(0, 0, 0, 0.1);
-  }
-  
   .sticker-badge {
     position: absolute;
     bottom: 12px;
-    right: -12px;
+    right: -10px;
     background-color: var(--accent-color);
     color: var(--white);
-    font-size: 0.75rem;
+    font-size: 0.725rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    padding: 6px 14px;
+    padding: 5px 12px;
     border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(200, 107, 90, 0.35);
+    box-shadow: 0 4px 10px rgba(200, 107, 90, 0.3);
     transform: rotate(4deg);
     z-index: 2;
   }
   
-  /* Typography Elements */
+  /* Typography & Hierarchy */
   .sub-heading {
     display: block;
-    font-size: 0.875rem;
+    font-size: 0.825rem;
     text-transform: uppercase;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.25em;
     color: var(--accent-color);
     font-weight: 600;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.2rem;
   }
   
   .main-heading {
     font-family: var(--font-serif);
-    font-size: 2.25rem;
+    font-size: 2.1rem;
     color: var(--primary-color);
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.15rem;
     letter-spacing: -0.01em;
+    line-height: 1.25;
   }
   
   .couple-names {
@@ -208,13 +239,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.2rem;
-    margin-bottom: 1.75rem;
+    gap: 0.15rem;
+    margin-bottom: 1.25rem;
+    position: relative;
   }
   
   .couple-names .name {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: 1.9rem;
     color: var(--primary-color);
     font-weight: 700;
     letter-spacing: -0.01em;
@@ -223,7 +255,7 @@
   
   .couple-names .ampersand {
     font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-style: italic;
     color: var(--accent-color);
     line-height: 1;
@@ -232,28 +264,28 @@
   .hero-date {
     border-top: 1px solid rgba(34, 48, 74, 0.12);
     border-bottom: 1px solid rgba(34, 48, 74, 0.12);
-    padding: 0.75rem 2.25rem;
+    padding: 0.6rem 2rem;
     display: inline-block;
   }
   
   .hero-date .full-date {
     font-family: var(--font-serif);
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     color: var(--primary-color);
     font-weight: 600;
     letter-spacing: 0.02em;
   }
   
-  /* Scroll Indicator */
+  /* Scroll Indicator (Feature #7) */
   .scroll-indicator {
-    margin-top: 3.5rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.2rem;
     text-decoration: none;
     color: var(--primary-color);
-    opacity: 0.65;
+    opacity: 0.6;
     transition: var(--transition-smooth);
   }
   
@@ -265,25 +297,88 @@
   }
   
   .scroll-text {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     font-weight: 500;
   }
   
   .arrow-down {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     animation: bounce 2.2s infinite ease-in-out;
   }
   
   @keyframes bounce {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(6px); }
-    60% { transform: translateY(3px); }
+    40% { transform: translateY(5px); }
+    60% { transform: translateY(2px); }
   }
   
   /* ==========================================================================
-     Detail Section
+     6. Doodles & Decorative Elements (Feature #6)
+     ========================================================================== */
+  .doodle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 3;
+  }
+  
+  /* Doodle 1 & 2: Washi Tape */
+  .tape-tape {
+    width: 80px;
+    height: 24px;
+    background-color: rgba(248, 244, 236, 0.75);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(2px);
+  }
+  
+  .tape-tape.top-left {
+    top: -8px;
+    left: -16px;
+    transform: rotate(-14deg);
+    border-left: 2px dashed rgba(0, 0, 0, 0.1);
+    border-right: 2px dashed rgba(0, 0, 0, 0.1);
+  }
+  
+  .tape-tape.bottom-right {
+    bottom: 28px;
+    left: -12px;
+    transform: rotate(7deg);
+    border-left: 2px dashed rgba(0, 0, 0, 0.1);
+    border-right: 2px dashed rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Doodle 3: Tiny Heart */
+  .heart-icon {
+    position: relative;
+    display: inline-block;
+    margin: 0 0.2rem;
+    transform: translateY(2px);
+    opacity: 0.85;
+  }
+  
+  /* Doodle 4: Paperclip */
+  .paperclip {
+    top: -14px;
+    right: 24px;
+    width: 14px;
+    height: 38px;
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+    opacity: 0.7;
+    transform: rotate(12deg);
+  }
+  
+  /* Doodle 5: Botanical Flower */
+  .flower-icon {
+    display: inline-block;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+    transform: translateY(-2px);
+  }
+  
+  /* ==========================================================================
+     7. Detail Section & Buttons (Feature #3 & #4 & #14)
      ========================================================================== */
   .detail-section {
     display: flex;
@@ -292,31 +387,31 @@
   
   .card {
     background: var(--white);
-    border-radius: 24px;
+    border-radius: 20px;
     box-shadow: var(--shadow-soft);
-    padding: 3rem 2rem;
+    padding: 2.75rem 2rem;
     width: 100%;
-    max-width: 520px;
+    max-width: 500px;
     text-align: center;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.9);
   }
   
   .card-title {
     font-family: var(--font-serif);
-    font-size: 1.85rem;
+    font-size: 1.75rem;
     color: var(--primary-color);
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
     position: relative;
   }
   
   .card-title::after {
     content: '';
     display: block;
-    width: 48px;
+    width: 44px;
     height: 2px;
     background-color: var(--accent-color);
-    margin: 0.6rem auto 0;
+    margin: 0.5rem auto 0;
     border-radius: 2px;
   }
   
@@ -324,7 +419,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.25rem;
   }
   
   .detail-item {
@@ -332,11 +427,11 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    padding: 0.75rem 0;
+    padding: 0.65rem 0;
   }
   
   .detail-icon {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     line-height: 1;
   }
   
@@ -348,7 +443,7 @@
   
   .detail-value.highlight {
     font-family: var(--font-serif);
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: var(--primary-color);
     font-weight: 600;
   }
@@ -356,7 +451,7 @@
   .detail-divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(34, 48, 74, 0.08), transparent);
-    width: 80%;
+    width: 75%;
     margin: 0 auto;
   }
   
@@ -366,10 +461,10 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 1.05rem 1.75rem;
-    border-radius: 14px;
+    padding: 0.95rem 1.5rem;
+    border-radius: 12px;
     font-family: var(--font-sans);
-    font-size: 0.975rem;
+    font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
     transition: var(--transition-smooth);
@@ -381,23 +476,34 @@
   .btn-primary {
     background-color: var(--primary-color);
     color: var(--white);
-    box-shadow: 0 6px 18px rgba(34, 48, 74, 0.18);
+    box-shadow: 0 6px 16px rgba(34, 48, 74, 0.16);
+    margin-bottom: 0.75rem;
   }
   
   .btn-primary:hover,
   .btn-primary:focus-visible {
     background-color: var(--accent-color);
-    box-shadow: 0 8px 24px rgba(200, 107, 90, 0.32);
+    box-shadow: 0 8px 22px rgba(200, 107, 90, 0.3);
     transform: translateY(-2px);
     outline: none;
   }
   
-  .btn-primary:active {
-    transform: translateY(0);
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid rgba(34, 48, 74, 0.2);
+  }
+  
+  .btn-secondary:hover,
+  .btn-secondary:focus-visible {
+    background-color: rgba(34, 48, 74, 0.04);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+    outline: none;
   }
   
   /* ==========================================================================
-     Gallery Section
+     8. Gallery Section & Lightbox (Feature #5)
      ========================================================================== */
   .gallery-section {
     text-align: center;
@@ -405,37 +511,27 @@
   
   .section-title {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: 1.9rem;
     color: var(--primary-color);
-    margin-bottom: 2.75rem;
+    margin-bottom: 2.25rem;
     position: relative;
     display: inline-block;
-  }
-  
-  .section-title::after {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 2px;
-    background-color: var(--accent-color);
-    margin: 0.5rem auto 0;
-    border-radius: 2px;
   }
   
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 2.75rem;
+    gap: 2.5rem;
     justify-items: center;
     padding: 0 0.5rem;
   }
   
   .gallery-item {
     background-color: var(--white);
-    padding: 12px 12px 42px 12px;
+    padding: 10px 10px 38px 10px;
     border-radius: 4px;
     box-shadow: var(--shadow-soft);
-    max-width: 280px;
+    max-width: 270px;
     width: 100%;
     transition: var(--transition-bounce);
     position: relative;
@@ -444,44 +540,116 @@
   
   .gallery-item img {
     width: 100%;
-    height: 280px;
+    height: 270px;
     object-fit: cover;
     border-radius: 2px;
     display: block;
     background-color: var(--bg-color);
   }
   
-  .gallery-item:hover {
+  .gallery-item:hover,
+  .gallery-item:focus-visible {
     transform: scale(1.04) rotate(0deg) !important;
     box-shadow: var(--shadow-hover);
     z-index: 5;
+    outline: none;
   }
   
-  /* Organic Scrapbook Rotations */
-  .rotate-left { transform: rotate(-3.5deg); }
-  .rotate-right { transform: rotate(3deg); }
-  .rotate-alt-left { transform: rotate(-2.5deg); }
-  .rotate-alt-right { transform: rotate(4deg); }
+  /* Scrapbook Rotations */
+  .rotate-left { transform: rotate(-3deg); }
+  .rotate-right { transform: rotate(2.5deg); }
+  .rotate-alt-left { transform: rotate(-2deg); }
+  .rotate-alt-right { transform: rotate(3.5deg); }
+  
+  /* Lightbox Modal */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(34, 48, 74, 0.88);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  
+  .lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .lightbox-content {
+    max-width: 90%;
+    max-height: 85vh;
+    transform: scale(0.92);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .lightbox.active .lightbox-content {
+    transform: scale(1);
+  }
+  
+  .lightbox-content img {
+    width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    background-color: var(--white);
+    padding: 8px;
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 2.2rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+  
+  .lightbox-close:hover {
+    opacity: 1;
+  }
   
   /* ==========================================================================
-     Closing Section
+     9. Closing Section & Footer (Feature #8)
      ========================================================================== */
   .closing-section {
     text-align: center;
-    padding-bottom: 6rem;
+    padding-bottom: 5rem;
   }
   
   .closing-card {
-    max-width: 580px;
+    max-width: 540px;
     margin: 0 auto;
   }
   
   .closing-text {
-    font-size: 1.025rem;
-    line-height: 1.85;
+    font-size: 1rem;
+    line-height: 1.8;
     color: var(--text-color);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1rem;
     font-weight: 400;
+  }
+  
+  .thank-you-text {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent-color);
+    margin-bottom: 2.25rem;
   }
   
   .closing-names {
@@ -493,34 +661,84 @@
   
   .closing-names .name {
     font-family: var(--font-serif);
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     color: var(--primary-color);
     font-weight: 600;
   }
   
   .closing-names .ampersand {
     font-family: var(--font-serif);
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-style: italic;
     color: var(--accent-color);
   }
   
   /* ==========================================================================
-     Responsive Styles (Tablet & Desktop)
+     10. Toast Notification (Feature #14)
+     ========================================================================== */
+  .toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(40px);
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 110;
+  }
+  
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  /* ==========================================================================
+     11. Responsive Styles (Feature #9)
      ========================================================================== */
   @media (min-width: 640px) {
     .hero-photo {
-      width: 290px;
-      height: 370px;
+      width: 320px;
+      height: 410px;
     }
   
     .main-heading {
-      font-size: 2.5rem;
+      font-size: 2.4rem;
     }
   
     .couple-names {
       flex-direction: row;
-      gap: 0.6rem;
+      gap: 0.5rem;
+    }
+  
+    .couple-names .name {
+      font-size: 2.1rem;
+    }
+  
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.25rem 1.75rem;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .section {
+      padding: 4rem 0;
+    }
+  
+    .hero-photo {
+      width: 340px;
+      height: 440px;
+    }
+  
+    .main-heading {
+      font-size: 2.6rem;
     }
   
     .couple-names .name {
@@ -528,31 +746,7 @@
     }
   
     .gallery-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2.5rem 2rem;
-    }
-  }
-  
-  @media (min-width: 992px) {
-    .section {
-      padding: 5rem 0;
-    }
-  
-    .hero-photo {
-      width: 310px;
-      height: 390px;
-    }
-  
-    .main-heading {
-      font-size: 2.85rem;
-    }
-  
-    .couple-names .name {
-      font-size: 2.5rem;
-    }
-  
-    .gallery-grid {
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.75rem;
+      gap: 1.5rem;
     }
   }

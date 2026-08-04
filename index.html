@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Primary Meta Tags -->
-  <title>Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR</title>
-  <meta name="title" content="Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR">
+  <title>Undangan Prosesi Lamaran | Priska Yovita & Yudistiro AR</title>
+  <meta name="title" content="Undangan Prosesi Lamaran | Priska Yovita & Yudistiro AR">
   <meta name="description" content="Website undangan prosesi lamaran Priska Yovita dan Yudistiro AR.">
   <meta name="theme-color" content="#F8F4EC">
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR">
+  <meta property="og:title" content="Undangan Prosesi Lamaran | Priska Yovita & Yudistiro AR">
   <meta property="og:description" content="Website undangan prosesi lamaran Priska Yovita dan Yudistiro AR.">
   <meta property="og:image" content="assets/images/hero.jpeg">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR">
+  <meta property="twitter:title" content="Undangan Prosesi Lamaran | Priska Yovita & Yudistiro AR">
   <meta property="twitter:description" content="Website undangan prosesi lamaran Priska Yovita dan Yudistiro AR.">
   <meta property="twitter:image" content="assets/images/hero.jpeg">
 
@@ -44,11 +44,22 @@
         <p class="blessing-text">Dengan memohon rahmat dan ridha Allah SWT</p>
       </div>
 
-      <!-- Hero Scrapbook Photo -->
+      <!-- Personalized Guest Badge (Feature #13) -->
+      <div id="guest-greeting" class="guest-greeting hidden" aria-live="polite">
+        <span class="guest-label">Kepada Yth.</span>
+        <span class="guest-title">Bapak/Ibu/Saudara/i</span>
+        <p id="guest-name" class="guest-name"></p>
+      </div>
+
+      <!-- Hero Scrapbook Photo (Prominent Focus) -->
       <div class="hero-photo-wrapper">
-        <div class="tape-tape top-left" aria-hidden="true"></div>
+        <!-- Decorative Doodle 1: Washi Tape Top Left -->
+        <div class="doodle tape-tape top-left" aria-hidden="true"></div>
+        <!-- Decorative Doodle 2: Washi Tape Bottom Right -->
+        <div class="doodle tape-tape bottom-right" aria-hidden="true"></div>
+        
         <div class="sticker-badge">Save The Date</div>
-        <img src="assets/images/hero.jpeg" alt="Foto Priska Yovita & Yudistiro AR" class="hero-photo" width="300" height="380">
+        <img src="assets/images/hero.jpeg" alt="Foto Priska Yovita & Yudistiro AR" class="hero-photo" fetchpriority="high" width="360" height="460">
       </div>
 
       <!-- Hero Main Titles -->
@@ -58,6 +69,10 @@
 
         <div class="couple-names">
           <span class="name">Priska Yovita</span>
+          <!-- Decorative Doodle 3: Tiny Heart SVG -->
+          <span class="doodle heart-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#C86B5A"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </span>
           <span class="ampersand" aria-hidden="true">&</span>
           <span class="sr-only">dan</span>
           <span class="name">Yudistiro AR</span>
@@ -68,7 +83,7 @@
         </div>
       </div>
 
-      <!-- Scroll Indicator -->
+      <!-- Minimal Scroll Indicator -->
       <a href="#detail" class="scroll-indicator" aria-label="Gulir ke detail acara">
         <span class="scroll-text">Detail Acara</span>
         <span class="arrow-down" aria-hidden="true">↓</span>
@@ -79,6 +94,9 @@
       <!-- DETAIL SECTION -->
       <section id="detail" class="detail-section section fade-in" aria-labelledby="detail-title">
         <div class="card detail-card">
+          <!-- Decorative Doodle 4: Paperclip Accent -->
+          <div class="doodle paperclip" aria-hidden="true"></div>
+
           <h2 id="detail-title" class="card-title">Detail Acara</h2>
 
           <div class="detail-list">
@@ -111,27 +129,39 @@
             </div>
           </div>
 
+          <!-- Primary CTA Button -->
           <a href="https://maps.app.goo.gl/GPS9UgS8sHQStZD29" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
             📍 Lihat Lokasi Acara
           </a>
+
+          <!-- Secondary CTA Button (Copy Link - Feature #14) -->
+          <button type="button" id="copy-link-btn" class="btn btn-secondary">
+            🔗 Salin Link Undangan
+          </button>
         </div>
       </section>
 
       <!-- GALLERY SECTION -->
       <section class="gallery-section section fade-in" aria-labelledby="gallery-title">
-        <h2 id="gallery-title" class="section-title">Galeri</h2>
+        <h2 id="gallery-title" class="section-title">
+          Galeri
+          <!-- Decorative Doodle 5: Botanical Floral Accent -->
+          <span class="doodle flower-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C86B5A" stroke-width="1.8" stroke-linecap="round"><path d="M12 2a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z"/><path d="M12 10a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z"/><path d="M4 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z"/><path d="M12 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z"/><circle cx="12" cy="12" r="2" fill="#C86B5A"/></svg>
+          </span>
+        </h2>
 
         <div class="gallery-grid">
-          <figure class="gallery-item rotate-left">
+          <figure class="gallery-item rotate-left" tabindex="0" role="button" aria-label="Buka foto galeri 1">
             <img src="assets/images/gallery-1.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 1" loading="lazy" width="280" height="280">
           </figure>
-          <figure class="gallery-item rotate-right">
+          <figure class="gallery-item rotate-right" tabindex="0" role="button" aria-label="Buka foto galeri 2">
             <img src="assets/images/gallery-2.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 2" loading="lazy" width="280" height="280">
           </figure>
-          <figure class="gallery-item rotate-alt-left">
+          <figure class="gallery-item rotate-alt-left" tabindex="0" role="button" aria-label="Buka foto galeri 3">
             <img src="assets/images/gallery-3.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 3" loading="lazy" width="280" height="280">
           </figure>
-          <figure class="gallery-item rotate-alt-right">
+          <figure class="gallery-item rotate-alt-right" tabindex="0" role="button" aria-label="Buka foto galeri 4">
             <img src="assets/images/gallery-4.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 4" loading="lazy" width="280" height="280">
           </figure>
         </div>
@@ -145,6 +175,9 @@
           Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara berkenan hadir serta memberikan doa dan restu pada prosesi lamaran kami.
         </p>
 
+        <!-- Feature #8: Thank You Text -->
+        <p class="thank-you-text">Terima kasih atas doa dan kehadirannya.</p>
+
         <div class="closing-names">
           <p class="name">Priska Yovita</p>
           <p class="ampersand" aria-hidden="true">&</p>
@@ -154,6 +187,17 @@
     </footer>
 
   </div>
+
+  <!-- LIGHTBOX MODAL (Feature #5) -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Pratinjau Foto">
+    <button type="button" id="lightbox-close" class="lightbox-close" aria-label="Tutup pratinjau foto">&times;</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Foto Galeri Diperbesar">
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION (Feature #14) -->
+  <div id="toast" class="toast" role="status" aria-live="polite">Link berhasil disalin.</div>
 
   <script src="script.js"></script>
 </body>
