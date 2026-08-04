@@ -3,12 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Undangan Prosesi Lamaran - Priska & Yudistiro</title>
+  
+  <!-- Primary Meta Tags -->
+  <title>Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR</title>
+  <meta name="title" content="Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR">
+  <meta name="description" content="Website undangan prosesi lamaran Priska Yovita dan Yudistiro AR.">
+  <meta name="theme-color" content="#F8F4EC">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR">
+  <meta property="og:description" content="Website undangan prosesi lamaran Priska Yovita dan Yudistiro AR.">
+  <meta property="og:image" content="assets/images/hero.jpeg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Undangan Prosesi Lamaran - Priska Yovita & Yudistiro AR">
+  <meta property="twitter:description" content="Website undangan prosesi lamaran Priska Yovita dan Yudistiro AR.">
+  <meta property="twitter:image" content="assets/images/hero.jpeg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -18,16 +38,17 @@
   <div class="app-container">
 
     <!-- HERO SECTION -->
-    <header class="hero section fade-in">
+    <header class="hero section fade-in" aria-label="Header Utama">
       <div class="hero-header">
-        <p class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+        <p class="bismillah" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
         <p class="blessing-text">Dengan memohon rahmat dan ridha Allah SWT</p>
       </div>
 
       <!-- Hero Scrapbook Photo -->
       <div class="hero-photo-wrapper">
+        <div class="tape-tape top-left" aria-hidden="true"></div>
         <div class="sticker-badge">Save The Date</div>
-        <img src="assets/images/hero.jpeg" alt="Priska Yovita & Yudistiro AR" class="hero-photo">
+        <img src="assets/images/hero.jpeg" alt="Foto Priska Yovita & Yudistiro AR" class="hero-photo" width="300" height="380">
       </div>
 
       <!-- Hero Main Titles -->
@@ -37,72 +58,88 @@
 
         <div class="couple-names">
           <span class="name">Priska Yovita</span>
-          <span class="ampersand">&</span>
+          <span class="ampersand" aria-hidden="true">&</span>
+          <span class="sr-only">dan</span>
           <span class="name">Yudistiro AR</span>
         </div>
 
         <div class="hero-date">
-          <p class="full-date">Sabtu, 8 Agustus 2026</p>
+          <time datetime="2026-08-08" class="full-date">Sabtu, 8 Agustus 2026</time>
         </div>
       </div>
 
       <!-- Scroll Indicator -->
-      <a href="#detail" class="scroll-indicator" aria-label="Scroll down to details">
-        <span class="mouse-icon"></span>
-        <span class="arrow-down">↓</span>
+      <a href="#detail" class="scroll-indicator" aria-label="Gulir ke detail acara">
+        <span class="scroll-text">Detail Acara</span>
+        <span class="arrow-down" aria-hidden="true">↓</span>
       </a>
     </header>
 
-    <!-- DETAIL SECTION -->
-    <section id="detail" class="detail-section section fade-in">
-      <div class="card detail-card">
-        <h2 class="card-title">Detail Acara</h2>
+    <main id="main-content">
+      <!-- DETAIL SECTION -->
+      <section id="detail" class="detail-section section fade-in" aria-labelledby="detail-title">
+        <div class="card detail-card">
+          <h2 id="detail-title" class="card-title">Detail Acara</h2>
 
-        <div class="detail-item">
-          <p class="detail-value highlight">📅 Sabtu, 8 Agustus 2026</p>
+          <div class="detail-list">
+            <div class="detail-item">
+              <span class="detail-icon" aria-hidden="true">📅</span>
+              <div class="detail-text">
+                <span class="sr-only">Tanggal:</span>
+                <p class="detail-value highlight">Sabtu, 8 Agustus 2026</p>
+              </div>
+            </div>
+
+            <div class="detail-divider" aria-hidden="true"></div>
+
+            <div class="detail-item">
+              <span class="detail-icon" aria-hidden="true">🕙</span>
+              <div class="detail-text">
+                <span class="sr-only">Waktu:</span>
+                <p class="detail-value">10.00 WIB – Selesai</p>
+              </div>
+            </div>
+
+            <div class="detail-divider" aria-hidden="true"></div>
+
+            <div class="detail-item">
+              <span class="detail-icon" aria-hidden="true">🏠</span>
+              <div class="detail-text">
+                <span class="sr-only">Lokasi:</span>
+                <p class="detail-value">Rumah Priska Yovita</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="https://maps.app.goo.gl/GPS9UgS8sHQStZD29" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            📍 Lihat Lokasi Acara
+          </a>
         </div>
+      </section>
 
-        <div class="detail-divider"></div>
+      <!-- GALLERY SECTION -->
+      <section class="gallery-section section fade-in" aria-labelledby="gallery-title">
+        <h2 id="gallery-title" class="section-title">Galeri</h2>
 
-        <div class="detail-item">
-          <p class="detail-value">🕙 10.00 WIB – Selesai</p>
+        <div class="gallery-grid">
+          <figure class="gallery-item rotate-left">
+            <img src="assets/images/gallery-1.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 1" loading="lazy" width="280" height="280">
+          </figure>
+          <figure class="gallery-item rotate-right">
+            <img src="assets/images/gallery-2.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 2" loading="lazy" width="280" height="280">
+          </figure>
+          <figure class="gallery-item rotate-alt-left">
+            <img src="assets/images/gallery-3.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 3" loading="lazy" width="280" height="280">
+          </figure>
+          <figure class="gallery-item rotate-alt-right">
+            <img src="assets/images/gallery-4.jpeg" alt="Momen kebersamaan Priska dan Yudistiro 4" loading="lazy" width="280" height="280">
+          </figure>
         </div>
-
-        <div class="detail-divider"></div>
-
-        <div class="detail-item">
-          <p class="detail-value">🏠 Rumah Priska Yovita</p>
-        </div>
-
-        <!-- TODO: Replace href="#" with actual Google Maps link -->
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          📍 Buka Google Maps
-        </a>
-      </div>
-    </section>
-
-    <!-- GALLERY SECTION -->
-    <section class="gallery-section section fade-in">
-      <h2 class="section-title">Galeri</h2>
-
-      <div class="gallery-grid">
-        <div class="gallery-item rotate-left">
-          <img src="assets/images/gallery-1.jpeg" alt="Momen Galeri 1" loading="lazy">
-        </div>
-        <div class="gallery-item rotate-right">
-          <img src="assets/images/gallery-2.jpeg" alt="Momen Galeri 2" loading="lazy">
-        </div>
-        <div class="gallery-item rotate-alt-left">
-          <img src="assets/images/gallery-3.jpeg" alt="Momen Galeri 3" loading="lazy">
-        </div>
-        <div class="gallery-item rotate-alt-right">
-          <img src="assets/images/gallery-4.jpeg" alt="Momen Galeri 4" loading="lazy">
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <!-- CLOSING SECTION -->
-    <footer class="closing-section section fade-in">
+    <footer class="closing-section section fade-in" aria-label="Penutup">
       <div class="closing-card">
         <p class="closing-text">
           Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara berkenan hadir serta memberikan doa dan restu pada prosesi lamaran kami.
@@ -110,7 +147,7 @@
 
         <div class="closing-names">
           <p class="name">Priska Yovita</p>
-          <p class="ampersand">&</p>
+          <p class="ampersand" aria-hidden="true">&</p>
           <p class="name">Yudistiro AR</p>
         </div>
       </div>
