@@ -517,6 +517,19 @@
     padding: 0.55rem 0;
   }
   
+  /* MODIFIED: Location Specific Hierarchy */
+  .detail-item.location-item {
+    padding-top: 0.75rem;
+  }
+  
+  .location-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.4rem;
+  }
+  
   .detail-icon {
     display: flex;
     align-items: center;
@@ -536,6 +549,22 @@
     font-weight: 600;
   }
   
+  .location-name {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+  
+  .location-address {
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+  
   .detail-divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(34, 48, 74, 0.08), transparent);
@@ -543,10 +572,12 @@
     margin: 0 auto;
   }
   
+  /* MODIFIED: Location Note supporting text */
   .location-note {
-    font-size: 0.825rem;
+    font-size: 0.75rem;
     color: var(--text-color);
-    opacity: 0.72;
+    opacity: 0.6;
+    margin-top: 0.25rem;
     margin-bottom: 1.5rem;
     line-height: 1.5;
   }
